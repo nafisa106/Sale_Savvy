@@ -16,7 +16,13 @@ import java.util.Map;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
+@CrossOrigin(
+        origins = {
+                "http://localhost:5173",
+                "https://sale-savvy-frontend.vercel.app"
+        },
+        allowCredentials = "true"
+)
 @RequestMapping("/api/products")
 public class ProductController {
 

@@ -11,7 +11,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/orders")
-@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
+@CrossOrigin(
+        origins = {
+                "http://localhost:5173",
+                "https://sale-savvy-frontend.vercel.app"
+        },
+        allowCredentials = "true"
+)
 public class OrderController {
 
     private final OrderRepository orderRepository;
