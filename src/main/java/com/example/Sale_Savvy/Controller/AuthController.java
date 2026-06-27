@@ -4,7 +4,6 @@ package com.example.Sale_Savvy.Controller;
 import com.example.Sale_Savvy.DTO.LoginRequest;
 import com.example.Sale_Savvy.Entities.User;
 import com.example.Sale_Savvy.Services.AuthService;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
@@ -36,13 +35,13 @@ public class AuthController {
                 User user = authService.authenticate(loginRequest.getUsername(), loginRequest.getPassword());
                 String token = authService.generateToken(user);
 
-                Cookie cookie = new Cookie("authToken", token);
-                cookie.setHttpOnly(true);
-                cookie.setSecure(false);
-                cookie.setPath("/");
-                cookie.setMaxAge(3600);
 
-                response.addCookie(cookie);
+
+                response.setHeader(
+                        "Set-Cookie",
+                        "authToken=" + token +
+                                "; HttpOnly; Secure; SameSite=None; Path=/; Max-Age=3600"
+                );
 
 
 
@@ -68,11 +67,14 @@ public class AuthController {
                 if (user != null) {
                     authService.logout(user);
                 }
-                Cookie cookie = new Cookie("authToken", null);
-                cookie.setHttpOnly(true);
-                cookie.setMaxAge(0);
-                cookie.setPath("/");
-                response.addCookie(cookie);
+
+
+                response.setHeader(
+                        "Set-Cookie",
+                        "authToken=; HttpOnly; Secure; SameSite=None; Path=/; Max-Age=0"
+                );
+
+
                 Map<String, String> responseBody = new HashMap<>();
                 responseBody.put("message", "Logout successful");
                 return ResponseEntity.ok(responseBody);
