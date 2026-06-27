@@ -71,7 +71,7 @@ public class AuthService {
             token = generateNewToken(user);
 
             if (existingToken != null) {
-                jwtTokenRepository.delete(existingToken);
+                jwtTokenRepository.deleteByUserId(user.getUserId());
             }
 
             saveToken(user, token);
