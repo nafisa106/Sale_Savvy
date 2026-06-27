@@ -13,8 +13,7 @@ import java.util.List;
 @RequestMapping("/api/orders")
 @CrossOrigin(
         origins = {
-                "http://localhost:5173",
-                "https://sale-savvy-frontend.vercel.app"
+                "http://localhost:5173"
         },
         allowCredentials = "true"
 )

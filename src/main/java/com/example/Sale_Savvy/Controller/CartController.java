@@ -14,8 +14,7 @@ import java.util.Map;
 @RestController
 @CrossOrigin(
         origins = {
-                "http://localhost:5173",
-                "https://sale-savvy-frontend.vercel.app"
+                "http://localhost:5173"
         },
         allowCredentials = "true"
 )

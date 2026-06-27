@@ -23,7 +23,7 @@ import java.util.Map;
         origins = {
                 "http://localhost:5174",
                 "http://localhost:5173",
-                "https://sale-savvy-frontend.vercel.app"
+
         },
         allowCredentials = "true"
 )

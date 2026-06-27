@@ -4,6 +4,7 @@ package com.example.Sale_Savvy.Controller;
 import com.example.Sale_Savvy.DTO.LoginRequest;
 import com.example.Sale_Savvy.Entities.User;
 import com.example.Sale_Savvy.Services.AuthService;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
@@ -36,12 +37,13 @@ public class AuthController {
                 String token = authService.generateToken(user);
 
 
+                Cookie cookie = new Cookie("authToken", token);
+                cookie.setHttpOnly(true);
+                cookie.setSecure(false);
+                cookie.setPath("/");
+                cookie.setMaxAge(3600);
 
-                response.setHeader(
-                        "Set-Cookie",
-                        "authToken=" + token +
-                                "; HttpOnly; Secure; SameSite=None; Path=/; Max-Age=3600"
-                );
+                response.addCookie(cookie);
 
 
 
@@ -69,10 +71,13 @@ public class AuthController {
                 }
 
 
-                response.setHeader(
-                        "Set-Cookie",
-                        "authToken=; HttpOnly; Secure; SameSite=None; Path=/; Max-Age=0"
-                );
+                Cookie cookie = new Cookie("authToken", null);
+                cookie.setHttpOnly(true);
+                cookie.setSecure(false);
+                cookie.setPath("/");
+                cookie.setMaxAge(0);
+
+                response.addCookie(cookie);
 
 
                 Map<String, String> responseBody = new HashMap<>();

@@ -17,8 +17,8 @@ public class CorsConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(List.of(
-                "http://localhost:5173",
-                "https://sale-savvy-frontend.vercel.app"
+                "http://localhost:5173"
+
         ));
 
         configuration.setAllowedMethods(

@@ -29,7 +29,7 @@ public class AuthenticationFilter implements Filter {
     private final AuthService authService;
     private final UserRepository userRepository;
 
-    private static final String ALLOWED_ORIGIN = "https://sale-savvy-frontend.vercel.app";
+    private static final String ALLOWED_ORIGIN = "http://localhost:5173";
 
     private static final String[] UNAUTHENTICATED_PATHS = {
             "/api/users/register",

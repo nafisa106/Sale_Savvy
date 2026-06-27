@@ -13,8 +13,8 @@ import java.util.Map;
 @RequestMapping("/api/users")
 @CrossOrigin(
         origins = {
-                "http://localhost:5173",
-                "https://sale-savvy-frontend.vercel.app"
+                "http://localhost:5173"
+
         }
 )
 public class UserController {
